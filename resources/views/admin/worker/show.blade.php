@@ -18,8 +18,8 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active">{{ $worker->name }}</li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
+                            <li class="breadcrumb-item active">{{ $worker->last_name . ' ' .$worker->first_name . ' ' . $worker->patronymic }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -48,8 +48,8 @@
                                         <td>{{ $worker->id }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Имя</td>
-                                        <td>{{ $worker->name }}</td>
+                                        <td>ФИО</td>
+                                        <td>{{ $worker->last_name . ' ' .$worker->first_name . ' ' . $worker->patronymic }}</td>
                                     </tr>
                                     <tr>
                                         <td>Возраст</td>
@@ -66,6 +66,14 @@
                                     <tr>
                                         <td>Должность</td>
                                         <td>{{  $positionForWorker }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Добавлен</td>
+                                        <td>{{ $worker->created_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Последнее обновление данных</td>
+                                        <td>{{ $worker->updated_at }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

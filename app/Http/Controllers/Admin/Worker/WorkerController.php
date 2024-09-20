@@ -47,6 +47,13 @@ class WorkerController extends Controller
         return view('admin.worker.show', compact('worker', 'positionForWorker'));
     }
 
+    public function edit(Worker $worker, Position $position)
+    {
+        $positions = Position::all();
+
+        return view('admin.worker.edit', compact('worker', 'positions'));
+    }
+
     /**
      * Update the specified resource in storage.
      */

@@ -18,7 +18,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                             <li class="breadcrumb-item active">{{ $project->name }}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -33,7 +33,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-3 mb-3">
-                        <a href="{{ route('projects.create') }}" type="button" class="btn btn-block btn-primary">Добавить сотрудника</a>
+                        <a href="{{ route('projects.create') }}" type="button" class="btn btn-block btn-primary">Добавить проект</a>
                     </div>
                 </div>
                 <div class="row">
@@ -62,6 +62,16 @@
                                     <tr>
                                         <td>Срок окончания время</td>
                                         <td>{{  $timeDeadline }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Список сотрудников занимающихся проектом</td>
+                                        <td>
+                                            @foreach($namesWorkersInProject as $name)
+                                                <div>
+                                                    {{ $name->last_name . ' ' . $name->first_name . ' ' . $name->patronymic }}
+                                                </div>
+                                            @endforeach
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Добавлен</td>

@@ -22,10 +22,22 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|string|min:3',
-            'description' => 'required|string|min:3',
+            'title' => 'required|string|unique:projects,title',
+            'description' => 'required|string',
             'date_deadline' => 'required|date',
             'time_deadline' => 'required|date_format:H:i',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+          'title.unique:projects,title' => 'Проект с таким названием уже существует',
+          'time_deadline.date_format:H:i'  => 'Формат времени должен быть: часы:минуты',
+          'title.required' => 'Это поле необходимо заполнить',
+          'description.required' => 'Это поле необходимо заполнить',
+          'date_deadline.required' => 'Это поле необходимо заполнить',
+          'time_deadline.required' => 'Это поле необходимо заполнить',
         ];
     }
 }

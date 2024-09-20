@@ -38,7 +38,7 @@
                                             <thead>
                                             <tr>
                                                 <th>ID</th>
-                                                <th>Название</th>
+                                                <th>ФИО</th>
                                                 <th colspan="2" class="text-center">Действие</th>
                                             </tr>
                                             </thead>
@@ -46,7 +46,7 @@
                                             @foreach($workers as $worker)
                                                 <tr>
                                                     <td>{{ $worker->id }}</td>
-                                                    <td>{{ $worker->name }}</td>
+                                                    <td>{{ $worker->last_name . ' ' .$worker->first_name . ' ' . $worker->patronymic }}</td>
                                                     <td><a href="{{ route('workers.show', $worker->id) }}"><i class="fa-solid fa-eye">Просмотр</i></a></td>
                                                     <td><a href="{{ route('workers.edit', $worker->id) }}"><i class="text-success">Редактирование</i></a></td>
                                                     <td>

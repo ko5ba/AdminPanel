@@ -43,6 +43,10 @@ class PositionContoller extends Controller
         return view('admin.position.show', compact('position'));
     }
 
+    public function edit(Position $position)
+    {
+        return view('admin.position.edit', compact('position'));
+    }
     /**
      * Update the specified resource in storage.
      */

@@ -3,13 +3,14 @@
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\Position\PositionContoller;
 use App\Http\Controllers\Admin\Worker\WorkerController;
-use App\Http\Controllers\Admin\Worker\WorkerDeletedController;
 use App\Http\Controllers\Admin\Project\ProjectController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::redirect('/', '/admin');
 
 Route::group(['prefix' => 'admin'], function(){
     Route::get('/', MainController::class)

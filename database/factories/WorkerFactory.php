@@ -20,7 +20,9 @@ class WorkerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'patronymic' => $this->faker->firstName(),
             'age' => $this->faker->numberBetween(18, 99),
             'description' => $this->faker->text(),
             'email' => $this->faker->unique()->safeEmail(),

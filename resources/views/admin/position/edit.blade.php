@@ -6,11 +6,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Создание тега</h1>
+                        <h1 class="m-0">Редактирование позиции</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                             <li class="breadcrumb-item active">Редактирование данных должности</li>
                         </ol>
                     </div><!-- /.col -->
@@ -25,19 +25,21 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form class="w-25" action="{{ route('workers.update') }}" method="POST">
+                        <form class="w-25" action="{{ route('positions.update', $position->id) }}" method="POST">
                             @csrf
                             @method('patch')
                             <div class="form-group">
-                                <input type="text" class="form-control" name="title" placeholder="Введите новую должность">
+                                <input type="text" class="form-control" name="title" placeholder="Введите новую должность" value="{{ old('title') ?? $position->title }}">
                                 @error('title')
-                                <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="description" placeholder="Введите описание должности"></textarea>
+                                <textarea id="summernote" name="description">
+                                    {{ old('description') }}
+                                </textarea>
                                 @error('description')
-                                <div class="text-danger">Превышено количество символов</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>

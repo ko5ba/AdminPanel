@@ -13,4 +13,9 @@ class Project extends Model
 
     protected $table = 'projects';
     protected $guarded = [];
+
+    public function workers()
+    {
+        return $this->belongsToMany(Worker::class, 'project_workers', 'project_id', 'worker_id');
+    }
 }

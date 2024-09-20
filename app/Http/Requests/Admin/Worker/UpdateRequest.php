@@ -23,11 +23,22 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', new FullName],
-            'age' => 'required|integer|between:1,65',
-            'description' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:workers,email',
-            'position_id' => 'required|integer|exists:positions,id'
+            'first_name' => 'nullable|string',
+            'last_name' => 'nullable|string',
+            'patronymic' => 'nullable|string',
+            'age' => 'nullable|integer|between:18,65',
+            'description' => 'nullable|string',
+            'email' => 'nullable|string|email|unique:workers,email',
+            'position_id' => 'nullable|integer|exists:positions,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'age.between:18,65' => 'Возраст должен быть от 18 до 65',
+            'email.unique:workers,email' => 'Такой адрес почты уже есть в списке',
+            'position_id.exists:positions,id' => 'Такой должности нет в списке'
         ];
     }
 }

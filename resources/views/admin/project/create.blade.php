@@ -10,7 +10,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                             <li class="breadcrumb-item active">Добавление нового проекта</li>
                         </ol>
                     </div><!-- /.col -->
@@ -28,30 +28,32 @@
                         <form class="w-25" action="{{ route('projects.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" name="title" placeholder="Введите название проекта">
+                                <input type="text" class="form-control" name="title" placeholder="Введите название проекта" value="{{ old('title') }}">
                                 @error('title')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>
-                                <textarea class="form-control" name="description" placeholder="Введите описание проекта"></textarea>
+                                <textarea id="summernote" name="description">
+                                    {{ old('description') }}
+                                </textarea>
                                 @error('description')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>
                             <div>
                                 <label for="dateDeadline">Выберите дату крайнего срока</label>
-                                <input type="date" class="form-control" name="date_deadline" placeholder="Введите крайний срок">
-                                @error('email')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                <input type="date" class="form-control" name="date_deadline" placeholder="Введите крайний срок" value="{{ old('date_deadline') }}">
+                                @error('date_deadline')
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>
                                 <label for="timeDeadline">Выберите время крайнего срока</label>
-                                <input type="time" class="form-control" name="time_deadline" placeholder="Введите время крайнего срока">
+                                <input type="time" class="form-control" name="time_deadline" placeholder="Введите время крайнего срока" value="{{ old('time_deadline') }}">
                                 @error('time_deadline')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group w-100">
@@ -60,11 +62,11 @@
                                     @foreach($workers as $worker)
                                         <option value = {{ $worker->id }}
                                             {{ $worker->id == old('worker_id') ? ' selected' : '' }}
-                                        >{{ $worker->name, $worker->surname }}</option>
+                                        >{{ $worker->last_name . ' ' . $worker->first_name . ' ' . $worker->patronymic}}</option>
                                     @endforeach
                                 </select>
                                 @error('category_id')
-                                <div class="text-danger">Выберите сотрудников в проект</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>

@@ -23,11 +23,28 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', new FullName],
+            'first_name' => 'required|string|',
+            'last_name' => 'required|string|',
+            'patronymic' => 'required|string|',
             'age' => 'required|integer|between:18,65',
-            'description' => 'nullable|string|max:255',
-            'email' => 'required|string|email|max:255|unique:workers,email',
+            'description' => 'nullable|string',
+            'email' => 'required|string|email|unique:workers,email',
             'position_id' => 'required|integer|exists:positions,id'
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'first_name.required' => 'Это поле необходимо заполнить',
+            'last_name.required' => 'Это поле необходимо заполнить',
+            'patronymic.required' => 'Это поле необходимо заполнить',
+            'age.required' => 'Это поле необходимо заполнить',
+            'email.required' => 'Это поле необходимо заполнить',
+            'position_id.required' => 'Это поле необходимо заполнить',
+            'age.between:18,65' => 'Возраст должен быть от 18 до 65',
+            'email.unique:workers,email' => 'Такой адрес почты уже есть в списке',
+            'position_id.exists:positions,id' => 'Такой должности нет в списке'
         ];
     }
 }

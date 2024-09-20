@@ -18,7 +18,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                             <li class="breadcrumb-item active">{{ $position->name }}</li>
                         </ol>
                     </div><!-- /.col -->
@@ -33,7 +33,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-3 mb-3">
-                        <a href="{{ route('positions.create') }}" type="button" class="btn btn-block btn-primary">Добавить сотрудника</a>
+                        <a href="{{ route('positions.create') }}" type="button" class="btn btn-block btn-primary">Добавить должность</a>
                     </div>
                 </div>
                 <div class="row">
@@ -54,6 +54,14 @@
                                     <tr>
                                         <td>Описание</td>
                                         <td>{{ $position->description }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Добавлено</td>
+                                        <td>{{ $position->created_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Последнее обновление</td>
+                                        <td>{{ $position->updated_at }}</td>
                                     </tr>
                                     </tbody>
                                 </table>

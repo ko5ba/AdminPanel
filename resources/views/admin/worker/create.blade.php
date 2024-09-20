@@ -28,41 +28,55 @@
                         <form class="w-25" action="{{ route('workers.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" name="name" placeholder="Введите ФИО">
-                                @error('name')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                <input type="text" class="form-control" name="first_name" placeholder="Введите имя" value="{{ old('first_name') }}">
+                                @error('first_name')
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <input type="number" class="form-control" name="age" placeholder="Введите возраст">
+                                <input type="text" class="form-control" name="last_name" placeholder="Введите фамилию" value="{{ old('last_name') }}">
+                                @error('last_name')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="patronymic" placeholder="Введите отчество" value="{{ old('patronymic') }}">
+                                @error('patronymic')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" name="age" placeholder="Введите возраст" value="{{ old('age') }}">
                                 @error('age')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>
-                                <textarea class="form-control" name="description" placeholder="Введите описание сотрудника"></textarea>
+                                <textarea id="summernote" name="description">
+                                    {{ old('description') }}
+                                </textarea>
                                 @error('description')
-                                    <div class="text-danger">Превышено количество символов</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>
                             <div>
-                                <input type="email" class="form-control" name="email" placeholder="Введите рабочую почту">
+                                <input type="email" class="form-control" name="email" placeholder="Введите рабочую почту" value="{{ old('email') }}">
                                 @error('email')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group w-50">
+                            <div class="form-group w-100">
                                 <label>Выберите должность</label>
                                 <select class="form-control" name="position_id">
                                     @foreach($positions as $position)
-                                        <option value = {{ $position->id }}
+                                        <option value = {{ old('position_id') ?? $position->id }}
                                             {{ $position->id == old('position_id') ? ' selected' : '' }}
                                         >{{ $position->title }}</option>
                                     @endforeach
                                 </select>
-                                @error('category_id')
-                                <div class="text-danger">Выберите должность</div>
+                                @error('position_id')
+                                    <div class="text-danger w-100">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>

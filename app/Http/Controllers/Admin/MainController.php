@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Position;
+use App\Models\Project;
 use App\Models\Worker;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,8 @@ class MainController extends Controller
     {
         $workers = Worker::all();
         $positions = Position::all();
+        $projects = Project::all();
 
-        return view('admin.main.index', compact('workers', 'positions'));
+        return view('admin.main.index', compact('workers', 'positions', 'projects'));
     }
 }

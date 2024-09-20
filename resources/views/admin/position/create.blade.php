@@ -10,7 +10,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
                             <li class="breadcrumb-item active">Добавление новой должности</li>
                         </ol>
                     </div><!-- /.col -->
@@ -28,15 +28,17 @@
                         <form class="w-25" action="{{ route('positions.store') }}" method="POST">
                             @csrf
                             <div class="form-group">
-                                <input type="text" class="form-control" name="title" placeholder="Введите новую должность">
+                                <input type="text" class="form-control" name="title" placeholder="Введите новую должность" value="{{ old('title') }}">
                                 @error('title')
-                                    <div class="text-danger">Это поле необходимо заполнить</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="description" placeholder="Введите описание должности"></textarea>
+                                <textarea id="summernote" name="description">
+                                    {{ old('description') }}
+                                </textarea>
                                 @error('description')
-                                    <div class="text-danger">Превышено количество символов</div>
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div>

@@ -16,7 +16,7 @@ class Position extends Model
 
     public function workers()
     {
-        return $this->hasMany(Worker::class, 'id');
+        return $this->hasMany(Worker::class, 'position_id', 'id');
     }
 
 }
