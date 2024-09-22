@@ -81,6 +81,22 @@
                                 @enderror
                             </div>
                             <div class="m-3"></div>
+                            <div class="form-group w-100">
+                                <label for="exampleInputFile">Добавить изображение</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="photo_worker">
+                                        <label class="custom-file-label">Выберите файл</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Загрузить</span>
+                                    </div>
+                                </div>
+                                @error('photo_worker')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="m-3"></div>
                             <div>
                                 <input type="submit" class="btn btn-primary" value="Редактировать данные">
                             </div>

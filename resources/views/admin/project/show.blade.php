@@ -19,7 +19,7 @@
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                            <li class="breadcrumb-item active">{{ $project->name }}</li>
+                            <li class="breadcrumb-item active">{{ $project->title }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -62,16 +62,6 @@
                                     <tr>
                                         <td>Срок окончания время</td>
                                         <td>{{  $timeDeadline }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Список сотрудников занимающихся проектом</td>
-                                        <td>
-                                            @foreach($namesWorkersInProject as $name)
-                                                <div>
-                                                    {{ $name->last_name . ' ' . $name->first_name . ' ' . $name->patronymic }}
-                                                </div>
-                                            @endforeach
-                                        </td>
                                     </tr>
                                     <tr>
                                         <td>Добавлен</td>

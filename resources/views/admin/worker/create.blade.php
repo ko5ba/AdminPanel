@@ -25,7 +25,7 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-12">
-                        <form class="w-25" action="{{ route('workers.store') }}" method="POST">
+                        <form class="w-25" action="{{ route('workers.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" class="form-control" name="first_name" placeholder="Введите имя" value="{{ old('first_name') }}">
@@ -77,6 +77,22 @@
                                 </select>
                                 @error('position_id')
                                     <div class="text-danger w-100">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3"></div>
+                            <div class="form-group w-100">
+                                <label for="exampleInputFile">Фото сотрудника</label>
+                                <div class="input-group">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" name="photo_worker" value="{{ old('photo_worker') }}">
+                                        <label class="custom-file-label">Выберите файл</label>
+                                    </div>
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">Загрузить</span>
+                                    </div>
+                                </div>
+                                @error('photo_worker')
+                                    <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>

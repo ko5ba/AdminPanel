@@ -28,6 +28,14 @@
                     </p>
                 </a>
             </li>
+            <li class="nav-item">
+                <a href="{{ route('data.index') }}" class="nav-link">
+                    <i class="nav-icon fa-calendar-days"></i>
+                    <p>
+                        Удаленные данные
+                    </p>
+                </a>
+            </li>
         </ul>
         <!-- /.sidebar-menu -->
     </div>

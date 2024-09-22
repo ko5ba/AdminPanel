@@ -32,7 +32,7 @@ class WorkerController extends Controller
     public function store(StoreRequest $request, Worker $worker)
     {
         $data = $request->validated();
-        Worker::firstOrCreate($data);
+        $worker->create($data);
 
         return redirect()->route('workers.index');
     }

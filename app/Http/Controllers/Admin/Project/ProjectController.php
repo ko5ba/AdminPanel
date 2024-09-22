@@ -50,9 +50,7 @@ class ProjectController extends Controller
     {
         $timeDeadline = Carbon::parse($project->time_deadline)->format('H:i');
 
-        $namesWorkersInProject = $project->workers->get();
-
-        return view('admin.project.show', compact('project', 'timeDeadline', 'namesWorkersInProject'));
+        return view('admin.project.show', compact('project', 'timeDeadline'));
     }
 
     /**

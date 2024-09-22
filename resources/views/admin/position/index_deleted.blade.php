@@ -6,12 +6,11 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Удаленные сотрудники</h1>
+                        <h1 class="m-0">Dashboard</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                            <li class="breadcrumb-item active">Удаленные сотрудники</li>
+                            <li class="breadcrumb-item active">Должности</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -39,24 +38,25 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            @foreach($workers as $worker)
+                                            @foreach($positions as $position)
                                                 <tr>
-                                                    <td>{{ $worker->id }}</td>
-                                                    <td>{{ $worker->last_name . ' '. $worker->first_name . ' ' . $worker->patronymic }}</td>
-                                                    <td><a href="{{ route('workers.show.deleted', $worker->id) }}" class="btn btn-block btn-primary">Просмотр</a></td>
+                                                    <td>{{ $position->id }}</td>
+                                                    <td>{{ $position->title }}</td>
+                                                    <td><a href="{{ route('positions.show.deleted', $position->id) }}" class="btn btn-block btn-primary">Просмотр</a></td>
                                                     <td>
-                                                        <form action="{{ route('workers.restore.deleted', $worker->id) }}" method="POST">
+                                                        <form action="{{ route('positions.restore.deleted', $position->id) }}" method="POST">
                                                             @csrf
                                                             @method('put')
-                                                            <input type="submit" class="btn btn-block btn-primary" value="Восстановить">
+                                                            <input class="btn btn-block btn-primary" type="submit" value="Восстановить">
                                                         </form>
+                                                    </td>
                                                 </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="m-3 svg-width-20px">
-                                        {{ $workers->links('pagination::default', ['class' => 'small-icon']) }}
+                                        {{ $positions->links('pagination::default', ['class' => 'small-icon']) }}
                                     </div>
                                     <!-- /.card-body -->
                                 </div>

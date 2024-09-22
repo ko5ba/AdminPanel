@@ -6,20 +6,12 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6 d-flex align-items-center">
-                        <h1 class="m-0 mr-2">{{ $worker->name }}</h1>
-                        <td><a href="{{ route('workers.edit', $worker->id) }}"><i class="fa-solid fa-pencil">Редактирование</i></a></td>
-                        <form action="{{ route('workers.destroy', $worker->id) }}" method="POST">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="border-0 bg-transparent">
-                                <i class="fa-solid fa-trash text-danger" role="button"></i>
-                            </button>
-                        </form>
+                        <h1 class="m-0 mr-2">Dashboard</h1>
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ route('admin.index') }}">Home</a></li>
-                            <li class="breadcrumb-item active">{{ $worker->last_name . ' ' .$worker->first_name . ' ' . $worker->patronymic }}</li>
+                            <li class="breadcrumb-item active">{{ $position->title }}</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -33,7 +25,11 @@
                 <!-- Small boxes (Stat box) -->
                 <div class="row">
                     <div class="col-3 mb-3">
-                        <a href="{{ route('workers.create') }}" type="button" class="btn btn-block btn-primary">Добавить сотрудника</a>
+                        <form action="{{ route('positions.restore.deleted', $position->id) }}" method="POST">
+                            @csrf
+                            @method('put')
+                            <input type="submit" class="btn btn-block btn-primary" value="Восстановить должность">
+                        </form>
                     </div>
                 </div>
                 <div class="row">
@@ -45,35 +41,23 @@
                                     <tbody>
                                     <tr>
                                         <td>ID</td>
-                                        <td>{{ $worker->id }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ФИО</td>
-                                        <td>{{ $worker->last_name . ' ' .$worker->first_name . ' ' . $worker->patronymic }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Возраст</td>
-                                        <td>{{ $worker->age }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Описание</td>
-                                        <td>{{ $worker->description }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Почта</td>
-                                        <td>{{ $worker->email }}</td>
+                                        <td>{{ $position->id }}</td>
                                     </tr>
                                     <tr>
                                         <td>Должность</td>
-                                        <td>{{ $positionForWorker }}</td>
+                                        <td>{{ $position->title }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Добавлен</td>
-                                        <td>{{ $worker->created_at }}</td>
+                                        <td>Описание</td>
+                                        <td>{{ $position->description }}</td>
                                     </tr>
                                     <tr>
-                                        <td>Последнее обновление данных</td>
-                                        <td>{{ $worker->updated_at }}</td>
+                                        <td>Добавлено</td>
+                                        <td>{{ $position->created_at }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Удален</td>
+                                        <td>{{ $position->deleted_at }}</td>
                                     </tr>
                                     </tbody>
                                 </table>
