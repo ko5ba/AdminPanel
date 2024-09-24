@@ -64,6 +64,14 @@
                                         <td>{{  $timeDeadline }}</td>
                                     </tr>
                                     <tr>
+                                        <td>Сотрудники занимающиеся проектом</td>
+                                        <td>
+                                            @foreach($workersFromProject as $worker)
+                                                <div><a href="{{ route('workers.show', $worker->id) }}">{{ $worker->last_name . ' ' . $worker->first_name . ' ' . $worker->patronymic }}</a></div>
+                                            @endforeach
+                                        </td>
+                                    </tr>
+                                    <tr>
                                         <td>Добавлен</td>
                                         <td>{{ $project->created_at }}</td>
                                     </tr>

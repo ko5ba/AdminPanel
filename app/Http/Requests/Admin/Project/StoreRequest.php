@@ -26,12 +26,16 @@ class StoreRequest extends FormRequest
             'description' => 'required|string',
             'date_deadline' => 'required|date',
             'time_deadline' => 'required|date_format:H:i',
+            'worker_ids' => 'required|array',
+            'worker_ids.*' => 'required|integer|exists:workers,id',
         ];
     }
 
     public function messages(): array
     {
         return [
+          'worker_ids[].required' => 'Выберите сотрудников',
+          'worker_idx.*.exists:workers,id' => 'Такого сотрудника нет в базе данных',
           'title.unique:projects,title' => 'Проект с таким названием уже существует',
           'time_deadline.date_format:H:i'  => 'Формат времени должен быть: часы:минуты',
           'title.required' => 'Это поле необходимо заполнить',

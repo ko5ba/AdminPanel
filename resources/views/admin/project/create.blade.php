@@ -56,17 +56,17 @@
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="form-group w-100">
-                                <label>Выберите сотрудников в проект</label>
-                                <select class="form-control" name="position_id" multiple>
+                            <div class="form-group">
+                                <label>Сотрудники</label>
+                                <select class="select2" multiple="multiple" data-placeholder="Выберите сотрудников в проект" style="width: 100%;" name="worker_ids[]">
                                     @foreach($workers as $worker)
-                                        <option value = {{ $worker->id }}
-                                            {{ $worker->id == old('worker_id') ? ' selected' : '' }}
-                                        >{{ $worker->last_name . ' ' . $worker->first_name . ' ' . $worker->patronymic}}</option>
+                                        <option {{ is_array( old('worker_ids')) && in_array($worker->id, old('worker_ids')) ? ' selected' : '' }} value="{{ $worker->id }}">{{ $worker->last_name . ' ' . $worker->first_name . ' ' . $worker->patronymic }}</option>
                                     @endforeach
                                 </select>
-                                @error('category_id')
-                                    <div class="text-danger">{{ $message }}</div>
+                                @error('worker_ids[]')
+                                    <div class="text-danger">
+                                        {{ $message }}
+                                    </div>
                                 @enderror
                             </div>
                             <div class="m-3"></div>

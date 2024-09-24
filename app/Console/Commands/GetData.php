@@ -26,8 +26,7 @@ class GetData extends Command
      */
     public function handle()
     {
-        $project = Project::find(2);
 
-        dd($project->workers->toArray());
+        return 0;
     }
 }

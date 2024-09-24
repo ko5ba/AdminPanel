@@ -37,10 +37,20 @@ class ProjectController extends Controller
      */
     public function store(StoreRequest $request, Project $project)
     {
-        $data = $request->validated();
-        $project->create($data);
+        try {
+            $data = $request->validated();
+            $workersIds = $data['worker_ids'];
+            unset($data['worker_ids']);
 
-        return redirect()->route('projects.index');
+            $project = Project::create($data);
+
+            $project->workers()->attach($workersIds);
+
+            return redirect()->route('projects.index');
+        }
+        catch (\Exception $exception){
+            abort(404);
+        }
     }
 
     /**
@@ -49,8 +59,9 @@ class ProjectController extends Controller
     public function show(Project $project)
     {
         $timeDeadline = Carbon::parse($project->time_deadline)->format('H:i');
+        $workersFromProject = $project->workers;
 
-        return view('admin.project.show', compact('project', 'timeDeadline'));
+        return view('admin.project.show', compact('project', 'timeDeadline', 'workersFromProject'));
     }
 
     /**
